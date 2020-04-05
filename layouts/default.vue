@@ -1,9 +1,19 @@
 <template>
   <v-app>
     <nuxt></nuxt>
+    <Dialog/>
   </v-app>
 </template>
 
+<script>
+import Dialog from '~/components/Dialog'
+
+export default {
+  components: {
+    Dialog
+  }
+}
+</script>
 
 <style lang="scss">
   .v-application{
@@ -19,7 +29,10 @@
     border-color: #1A56BE !important;
   }
   .text-primary{
-    color: #1A56BE;
+    color: #1A56BE !important;
+  }
+  .text-main{
+    font-size: 20px;
   }
   .text-title{
     font-size: 20px;
