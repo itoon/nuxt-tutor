@@ -50,7 +50,7 @@
               <v-date-picker :max="new Date().toISOString().substr(0, 10)" v-model="form.birthday" scrollable>
                 <v-spacer></v-spacer>
                 <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
-                <v-btn text color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                <v-btn text color="primary" @click="$refs.dialog.save(form.birthday)">OK</v-btn>
               </v-date-picker>
             </v-dialog>            
             <p class="text-center text-main mb-0 mt-4">Work Profile</p>
@@ -81,32 +81,38 @@ export default {
   data(){
     return {
       form: {
-        email: '',
-        phone: '',
-        birthday: new Date().toISOString().substr(0, 10),
-        company: '',
-        position: ''
+        email: this.$store.getters.getRegister.email,
+        phone: this.$store.getters.getRegister.phone,
+        birthday: this.$store.getters.getRegister.birthday,
+        company: this.$store.getters.getRegister.company,
+        position: this.$store.getters.getRegister.position
       },
       modal: false,
+      emailValidated: false,
+      phoneValidated: false,
       emailRules: [ value => this.emailValidator(value)],
       phoneRules: [ value => this.phoneValidator(value)]
     }
   },
   methods: {
-    phoneValidator(value){
+    phoneValidator(value){    
+      this.phoneValidated = false  
       if(value == ''){
         return 'required'
       }
-      if(REGEX_PHONE.test(value)){
+      if(REGEX_PHONE.test(value) && value.length == 10){ 
+        this.phoneValidated = true
         return true
       }
-      return "please input phonenumber"
+      return "please input phone number"
     },
     emailValidator(value){
+      this.emailValidated = false
       if(value == ''){
         return 'required'
       }
       if(REGEX_EMAIL.test(value)){
+        this.emailValidated = true
         return true
       }
       return "email is Invalid"
@@ -121,12 +127,49 @@ export default {
           return event.preventDefault()
         }
       }      
-    },   
-    back() {
+    }, 
+    validate(){
+      let validated = true
+      const errors = []
+      const validatorField = [
+        'email',
+        'phone',
+        'company',
+        'position'
+      ]
+      validatorField.forEach((field) => {
+        if(this.form[field] == ''){
+          validated = false
+          errors.push(`${field} can not be null`)
+        }
+      })    
+      if(!this.emailValidated){
+        validated = false
+        errors.push(`email is Invalid`)
+      }
+      if(!this.phoneValidated){
+        validated = false
+        errors.push(`please input phone number`)
+      }
+      if(!validated){
+        this.$store.dispatch('setDialog', {
+          isShow: true,
+          title: 'Form is error',
+          message: errors.map((error) => error+'<br/>').join('')
+        })        
+      }      
+      return validated
+    },  
+    back() {      
       this.$router.push('/register')
     },
     register() {
-      console.log("Register")
+      if(this.validate()){
+        this.$store.dispatch('setRegister', this.form)
+        this.$axios.patch(`https://nuxt-tutor.firebaseio.com/members/line:0001/profile.json`, this.$store.getters.getRegister).then((res) => {
+          this.$router.push('/register/done')
+        })        
+      }      
     }
   }
 }
