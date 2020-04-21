@@ -31,6 +31,9 @@ export default {
   .text-primary{
     color: #1A56BE !important;
   }
+  .bold{
+    font-weight: bold;
+  }
   .text-main{
     font-size: 20px;
   }

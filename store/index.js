@@ -15,6 +15,57 @@ export const state = () => ({
     position: ''
   },
   data: {  
+    agenda: [
+      {
+        date: "20 March 2020",
+        sessions: [
+          {
+            time: "10:00 AM",
+            title: "INTRODUCTIONS-1",
+            spaker: "Marvelous Team",
+            image: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+            duringTime: "100 min"
+          },
+          {
+            type: "set",
+            time: "12:00 AM",
+            sessionSet: [
+              {
+                title: "INTRODUCTIONS-2",
+                spaker: "Marvelous Team",
+                image: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+                duringTime: "100 min"
+              },
+              {
+                title: "INTRODUCTIONS-3",
+                spaker: "Marvelous Team",
+                image: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+                duringTime: "100 min"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        date: "21 March 2020",
+        sessions: [
+          {
+            time: "10:00 AM",
+            title: "INTRODUCTIONS-4",
+            spaker: "Marvelous Team",
+            image: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+            duringTime: "100 min"
+          },
+          {
+            time: "10:00 AM",
+            title: "INTRODUCTIONS-5",
+            spaker: "Marvelous Team",
+            image: "https://cdn.vuetifyjs.com/images/cards/docks.jpg",
+            duringTime: "100 min"
+          }
+        ]
+      }
+    ],
     workshops: [
       {
         date: "20 March 2020",
@@ -111,6 +162,9 @@ export const getters = {
   },
   getWorkshop(state){
     return state.data.workshops
+  },
+  getAgenda(state){
+    return state.data.agenda
   }
 }
 
