@@ -20,10 +20,11 @@
             <p class="text-center text-main mb-0 mt-4">Tell us more a bit</p>
             <v-text-field
               v-model="form.email"
+              type="email"
               dense      
               :rules="emailRules"
               label="Email"
-            ></v-text-field>
+            ></v-text-field>            
             <v-text-field
               v-model="form.phone"
               dense          
