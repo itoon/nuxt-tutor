@@ -10,7 +10,7 @@
     </v-app-bar>
     <v-container class="pt-0 pb-0">
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12">          
           <div class="mt-8 text-primary text-title text-center">
             Step 1 of 2
           </div>
@@ -59,7 +59,7 @@ export default {
         firstname: this.$store.getters.getRegister.firstname,
         lastname: this.$store.getters.getRegister.lastname,
         gender: this.$store.getters.getRegister.gender       
-      }
+      },      
     }
   },  
   methods: {
