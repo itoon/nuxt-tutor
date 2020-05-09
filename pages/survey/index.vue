@@ -28,7 +28,7 @@
             :min="0"
             thumb-label="always"
           ></v-slider>
-          <v-btn rounded color="primary" dark class="w-100 my-btn" @click="next">Next</v-btn>
+          <v-btn rounded color="primary" dark class="w-100 my-btn mt-100" @click="next">Next</v-btn>
         </v-col>        
       </v-row>
     </v-container>
@@ -40,12 +40,13 @@ export default {
   data(){
     return {
       form: {
-        survey1: 5
+        survey1: this.$store.getters.getSurvey.survey1
       }
     }
   },
   methods: {
     next() {
+      this.$store.dispatch("setSurvey", this.form)     
       this.$axios.patch(`https://nuxt-tutor.firebaseio.com/survey/line:0001.json`, this.form).then((res) => {
         this.$router.push('/survey/step2')
       }).catch(e => console.log(e))   
@@ -74,8 +75,5 @@ export default {
         height: 4px;
       }
     }    
-  }
-  .my-btn{
-    margin-top: 100px;
-  }
+  }  
 </style>

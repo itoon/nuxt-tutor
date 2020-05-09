@@ -4,6 +4,11 @@ export const state = () => ({
     title: '',
     message: ''
   },
+  survey: {
+    survey1: 5,
+    survey2: '',
+    survey3: '',
+  },
   register: {
     firstname: '',
     lastname: '',
@@ -165,6 +170,9 @@ export const getters = {
   },
   getAgenda(state){
     return state.data.agenda
+  },
+  getSurvey(state){
+    return state.survey
   }
 }
 
@@ -180,6 +188,12 @@ export const mutations = {
       ...state.dialog,
       ...data
     }
+  },
+  SET_SURVEY(state, data){
+    state.survey = {
+      ...state.survey,
+      ...data
+    }
   }
 }
 
@@ -189,5 +203,8 @@ export const actions = {
   },
   setDialog({ commit }, data){
     commit('SET_DIALOG', data)
+  },
+  setSurvey({ commit }, data){
+    commit('SET_SURVEY', data)
   }
 }
