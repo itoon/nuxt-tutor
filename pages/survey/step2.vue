@@ -18,7 +18,7 @@
       </v-row>
       <v-row justify="center">
         <v-col cols="10">
-          <h2 class="text-center mt-1">Which parts of the event did you enjoy?</h2>
+          <h2 class="text-center mt-1 question">Which parts of the event did you enjoy?</h2>
         </v-col>
         <v-col cols="10">  
           <v-textarea
@@ -58,3 +58,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .question{
+    font-size: 20px;
+  }
+</style>

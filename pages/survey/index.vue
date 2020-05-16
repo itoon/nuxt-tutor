@@ -18,7 +18,7 @@
       </v-row>
       <v-row justify="center">
         <v-col cols="10">
-          <h2 class="text-center mt-1">How would you rate<br/>the event overall?</h2>
+          <h2 class="text-center mt-1 question">How would you rate<br/>the event overall?</h2>
         </v-col>
         <v-col cols="10">
            <v-slider
@@ -56,6 +56,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .question{
+    font-size: 20px;
+  }
   .slider{
     margin-top: 90px;
     ::v-deep{
