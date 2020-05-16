@@ -14,7 +14,7 @@
           <div class="set-padding">
             <div class="text-center mt-10">
               <img src="~/assets/survey.png" alt="" width="236px">
-              <h1 class="text-title mt-4">Thankyou</h1>
+              <h1 class="text-title mt-4">Thank you</h1>
               <p class="mt-7">
                 Thanks for completing this survey,<br/> your feedback will help us improve the<br/> next event.
               </p>
