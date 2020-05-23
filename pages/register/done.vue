@@ -29,7 +29,7 @@
 </template>
 
 <script>
-export default {
+export default {  
   data(){
     return {
       name: this.$store.getters.getRegister.firstname
@@ -40,7 +40,7 @@ export default {
       this.$router.push('workshop')
     },
     close(){
-
+      liff.closeWindow();
     }
   }
 }
