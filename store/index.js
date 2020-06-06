@@ -14,6 +14,16 @@ export const state = () => ({
     survey2: '',
     survey3: '',
   },
+  user: {
+    firstname: '',
+    lastname: '',
+    gender: 1,
+    email: '',
+    phone: '',
+    birthday: '',
+    company: '',
+    position: ''
+  },
   register: {
     firstname: '',
     lastname: '',
@@ -164,6 +174,9 @@ export const state = () => ({
 })
 
 export const getters = {
+  getUser(state){
+    return state.user  
+  },
   getRegister(state){
     return state.register
   },
@@ -191,6 +204,12 @@ export const mutations = {
       ...data
     }
   },
+  SET_USER(state, data){
+    state.user = {
+      ...state.user,
+      ...data
+    }
+  },
   SET_DIALOG(state, data){
     state.dialog = {
       ...state.dialog,
@@ -212,6 +231,9 @@ export const mutations = {
 }
 
 export const actions = {
+  setUser({ commit }, data){
+    commit('SET_USER', data)
+  },
   setRegister({ commit }, data){
     commit('SET_REGISTER', data)
   },
